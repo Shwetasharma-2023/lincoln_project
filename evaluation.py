@@ -4,9 +4,7 @@ import ast
 import json
 from typing_extensions import Annotated, TypedDict
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-os.environ["OPENAI_API_KEY"] = (
-    "sk-proj-4IPmM841wCgFlZf1r7yrT3BlbkFJXGjj1aGburUUslfkOthr"
-)
+
 
 
 class Reasoning(TypedDict):
