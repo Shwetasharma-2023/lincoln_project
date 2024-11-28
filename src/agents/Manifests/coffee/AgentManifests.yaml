@@ -1,0 +1,70 @@
+agents:
+  - name: "Supervisor"
+    status: "active"
+    version: "1.0"
+
+  - name: "greeting"
+    agent_id: "GA001"
+    version: "1.0"
+    status: "active"
+    description: "Specializes in greeting users based on images, introducing the AI system's capabilities, and setting a positive tone for interactions."
+    capabilities:
+      - "Analyze images for key attributes and context."
+      - "Greet users in a friendly, respectful manner."
+      - "Use contextual information (weather, time) to make greetings relevant."
+    input_requirements:
+      - "Image of the user or users."
+      - "Contextual information such as time of day or weather."
+    output_details:
+      - "Personalized greeting message."
+    response_time: "1-2 seconds"
+
+  - name: "coffee_recommendation"
+    agent_id: "CRA001"
+    version: "1.0"
+    status: "active"
+    description: "Specializes in recommending coffee to customers based on their preferences. Acts as a senior sales associate."
+    capabilities:
+      - "Recommend suitable coffees based on customer preferences."
+      - "Ask relevant questions about customer preferences."
+      - "Provide detailed recommendations including tasting notes, price, and origin."
+    input_requirements:
+      - "Customer's coffee preferences (roast level, flavor profile, origin)."
+      - "Occasion for the coffee selection (daily brew, gift, special occasion)."
+    output_details:
+      - "Recommended coffees with detailed information."
+    response_time: "2-3 seconds"
+
+  - name: "KnowledgeBase"
+    agent_id: "KBA001"
+    version: "1.0"
+    status: "active"
+    description: "Answers user questions about the retail store and provides domain-specific information related to coffee."
+    capabilities:
+      - "Answer questions about store details (e.g., opening hours, restroom locations)."
+      - "Provide domain-specific information (e.g., coffee pairings, best varieties for specific foods)."
+      - "Access and retrieve information from the store's knowledge base."
+    input_requirements:
+      - "User query regarding store details or domain-specific information."
+    output_details:
+      - "Accurate and concise answers to user queries."
+    response_time: "1-2 seconds"
+
+  - name: "CoffeeInventory"
+    agent_id: "CIA001"
+    version: "1.0"
+    status: "inactive"
+    description: "Generates a SQL query from user input and uses it to query SQL database."
+    capabilities:
+      - "Recommend suitable coffee based on customer preferences."
+      - "Ask relevant questions about customer preferences."
+      - "Provide detailed recommendations including tasting notes, price, and origin."
+    input_requirements:
+      - "Customer's coffee preferences (roast level, flavor profile, origin)."
+      - "Occasion for the coffee selection (daily brew, gift, special occasion)."
+    output_details:
+      - "Recommended coffee with detailed information."
+    response_time: "2-3 seconds"
+
+background_information:
+  - filename: "BackgroundInfo.yaml"

@@ -1,0 +1,91 @@
+agents:
+  - name: "Supervisor"
+    status: "active"
+    version: "1.0"
+
+  - name: "Greeting"
+    agent_id: "GA001"
+    version: "1.0"
+    status: "active"
+    description: "Specializes in greeting users based on images, introducing the AI system's capabilities, and setting a positive tone for interactions."
+    capabilities:
+      - "Analyze images for key attributes and context."
+      - "Greet users in a friendly, respectful manner."
+      - "Use contextual information (weather, time) to make greetings relevant."
+    input_requirements:
+      - "Image of the user or users."
+      - "Contextual information such as time of day or weather."
+    output_details:
+      - "Personalized greeting message."
+    response_time: "1-2 seconds"
+
+  - name: "ProductRecommendation"
+    agent_id: "WRA001"
+    version: "1.0"
+    status: "active"
+    description: "Specializes in recommending wines to customers based on their preferences. Acts as a wine sommelier and senior sales associate."
+    capabilities:
+      - "Recommend suitable wines based on customer preferences."
+      - "Ask relevant questions about customer preferences."
+      - "Provide detailed recommendations including tasting notes, price, and origin."
+    input_requirements:
+      - "Customer's wine preferences (type, flavor notes, regions)."
+      - "Occasion for the wine selection (dinner party, gift, casual drinking)."
+    output_details:
+      - "Recommended wines with detailed information."
+    response_time: "2-3 seconds"
+
+  - name: "KnowledgeBase"
+    agent_id: "KBA001"
+    version: "1.0"
+    status: "active"
+    description: "Answers user questions about the retail store and provides domain-specific information, such as wine pairings."
+    capabilities:
+      - "Answer questions about store details (e.g., opening hours, restroom locations)."
+      - "Provide domain-specific information (e.g., wine pairings, best varieties for specific foods)."
+      - "Access and retrieve information from the store's knowledge base."
+    input_requirements:
+      - "User query regarding store details or domain-specific information."
+    output_details:
+      - "Accurate and concise answers to user queries."
+    response_time: "1-2 seconds"
+    
+  
+  - name: "SubjectiveTerm"
+    agent_id: "SBT001"
+    version: "1.0"
+    status: "active"
+    description: "Specializes in handling subjective terms mentioned by users in their queries, such as 'premium,' 'best,' etc."
+    capabilities:
+      - "Identifies subjective terms in user queries."
+      - "Selects the most relevant criterion based on the subjective term."
+      - "suggests alternative criteria."
+      - "Engages the user to explore further options."
+      - "ask more attributes from user"
+    input_requirements:
+      - "User query containing subjective terms."
+    output_details:
+      - "Accurate and concise recommendations tailored to subjective preferences."
+    response_time: "1-2 seconds"
+  
+  - name: "ProductInventory"
+    agent_id: "WIA001"
+    version: "1.0"
+    status: "active"
+    description: "Generates a sql query from user input and use it to query SQL database"
+    capabilities:
+      - "Recommend suitable wines based on customer preferences."
+      - "Ask relevant questions about customer preferences."
+      - "Provide detailed recommendations including tasting notes, price, and origin."
+    input_requirements:
+      - "Customer's wine preferences (type, flavor notes, regions)."
+      - "Occasion for the wine selection (dinner party, gift, casual drinking)."
+    output_details:
+      - "Recommended wines with detailed information."
+    response_time: "2-3 seconds"
+   
+
+
+
+background_information:
+  - filename: "BackgroundInfo.yaml"

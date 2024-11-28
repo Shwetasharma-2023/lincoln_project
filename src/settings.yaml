@@ -1,0 +1,39 @@
+clients:
+  - name: "wine"
+    description: "wine recommendation"
+    status: "active"
+    database:
+      username: "master"
+      password: "0azrlr62AMm6Ndkcj"
+      host: "prod-db-instance.cfsigyke6cnj.ap-southeast-2.rds.amazonaws.com"
+      port: "3306"
+      name: "wine_reviews_new"
+
+  - name: "coffee"
+    description: "coffee recommendation"
+    status: "inactive"
+
+model:
+  agent_model: "gpt-4o"
+  response_refining_model : "gpt-4o-mini"
+  randomness: 0
+  quick_response_model: "llama3_8b_8192"
+  quick_response_model_randomness :  0.5
+
+embeddings_model:
+  name: "text-embedding-3-large"
+
+pinecone:
+  index_name: "langchainindex"
+  namespace: "wine"
+  search:
+    type: "similarity_score_threshold"  # Search type: "mmr"
+    keys:
+      k: 5
+      score_threshold: 0.7  # Search keys for MMR
+  document_content_description: "Brief description of the wine"
+
+paths:
+  supervisor_agent_name     :  "Supervisor"
+  tool_manifests_file_path  :  "./src/tools/Manifests/ToolManifests.yaml"
+  agent_manifests_file_path :  "./src/agents/Manifests/AgentManifests.yaml"

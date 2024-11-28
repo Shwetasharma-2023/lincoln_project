@@ -1,0 +1,24 @@
+ product_information:
+   product: wine
+   attributes:
+     attribute1: liquor_style
+     attribute2: variety
+     attribute3: price
+     attribute4: meal_preferences
+     attribute5: tasting_notes
+   all_attributes_name: liquor style, variety, price, meal preferences and tasting notes
+   no_of_attributes: 5
+   sql_table_name: wine_reviews_new
+
+#product_information:
+#  product: 'coffee'
+#  sql_table_name: 'coffee_reviews'
+#  attributes:
+#    attribute1: 'roast type'
+#    attribute2: 'bean type'
+#    attribute3: 'price'
+#    attribute4: 'brew method'
+#    attribute5: 'flavor profile'
+#    attribute6: 'origin'
+#  all_attributes_name: "roast type, bean type, price, brew method, flavor profile, and origin"
+#  no_of_attributes: 6

@@ -1,0 +1,98 @@
+- agent_name: "Greeting"
+  tools:
+    - name: "greet"
+      description: "Responds to user greetings in a friendly and welcoming manner. This tool handles greetings like 'hi', 'hello', 'good morning', 'how are you?', 'bye', 'thank you', etc."
+      required_parameters:
+      response_format: "text"
+
+- agent_name: "SubjectiveTerm"
+  tools:
+    - name: "subjective_term_handling"
+      description: |
+                    "Use this tool to handle user queries containing subjective terms, Follow these guidelines:"
+                    "1. Identify Subjective term in the user’s query that imply a preference or quality judgment. These might include terms related to quality, value, or ranking such as 'premium', 'best', 'top', 'excellent', etc."
+                    "2. Based on the identified subjective terms, infer which attributes are likely to be relevant for providing a recommendation. For example:"
+                    "premium' might imply attributes like Rating, Price, or Brand."
+                    "best' might imply attributes like Rating or Customer Reviews."
+                    "#IMPORTANT#- ALWAYS respond in a way: First, acknowledge the user. Then, for the given preference, use your LLM knowledge to select the most relevant [criteria] (e.g., popular choice, reputation, etc.)."
+                    "Suggest the best options based on this [selected criteria], and briefly explain why they are ideal. Additionally, mention one or two other relevant criteria to consider (e.g., vintage year, customer reviews)."
+                    "Ask the user if they would like to consider these other criteria."
+      required_parameters:
+        - "subjective_term"
+      response_format: "text"
+
+- agent_name: "KnowledgeBase"
+  tools:
+    - name: "knowledge_base_search"
+      description: |
+                    "Your task is to provide accurate and relevant information of {{product}}, to enhance the customer's {{product}} knowledge anything which can handle by LLM knowledge, "
+                    "like {{attribute5}}, famous {{product}}, what is rose {{product}}, characterstics of {{product}}, all varieties of red {{product}}"
+                    "which {{attribute2}} goes well with rose fot these type of queries , "
+                    "what about {{attribute1}} of {{product}} and after showing answer ask for what do you want from it and go to ProductInventory_node for further attributes asking. Never return URLs in responses."
+      required_parameters:
+        - "query"
+      response_format: "text"
+
+- agent_name: "ProductInventory"
+  tools:
+    - name: "sql_tool"
+      description: |
+                    "This tool is used for creating and executing SQL queries for mathematical analytics. 
+                     - In case of {{attribute1}}, ONLY execute this sql query: `SELECT DISTINCT {{attribute2}} FROM {{product}}_reviews WHERE {{attribute1}} = lower('')`.
+                     - In case of  {{attribute2}} ONLY execute this query: `SELECT MIN({{attribute3}}) AS min_price, MAX({{attribute3}}) As max_price FROM {{product}}_reviews WHERE {{attribute2}} = lower('');`. DO NOT use this tool to recommend {{product}}."     
+      required_parameters:
+        - None
+      response_format: "text"
+
+    - name: "ask_entities"
+      description: |
+                    "This tool is used to gather all required attributes from the user to provide a {{product}} recommendation"
+                    "But If the user seeks your opinion or guidance during the conversation, provide suggestions based on LLM knowledge before resuming the collection of required attributes"
+                    "**IMPORTANT**"
+                    "1. Always ask one attribute at a time."
+                    "2. Make sure to collect all {{no_of_attributes}} attributes ({{all_attributes_name}}) before proceeding. Then `ProductRecommendation_node` should only be invoked after all attributes have been gathered."        
+      required_parameters:
+        - "{{attribute1}}"
+        - "{{attribute2}}"
+        - "{{attribute3}}"
+        - "{{attribute4}}"
+        - "{{attribute5}}"
+      response_format: "text"
+
+- agent_name: "ProductRecommendation"
+  tools:
+    - name: "recommend_product"
+      description: |
+                    "Recommends a {{product}} once all required attributes are collected, including {{all_attributes_name}}"
+                    "Uses LLM knowledge to provide a comprehensive suggestion and allows the user to explore other options."
+                    "Use this tool to recommend a wine once all required attributes are collected from the user."
+                    "Ensure that all these attributes are gathered using the `ask_entities` tool before invoking this recommendation tool."
+                    "When a there is a subjective term in query, identify the term and use your LLM knowledge to choose the most appropriate criterion that most likely choose to handle the context."
+                    "Generate a response based on the selected criterion and suggest other criteria for consideration."
+                    "Ensure that the response provides a comprehensive suggestion and allows the user to explore other options."
+      required_parameters:
+        - "{{attribute1}}"
+        - "{{attribute2}}"
+        - "{{attribute3}}"
+        - "{{attribute4}}"
+        - "{{attribute5}}"
+      response_format: "text"
+      
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

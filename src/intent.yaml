@@ -1,0 +1,11 @@
+intent:
+  - name: "Wine recommendation"
+    objectives:
+      - "Recommend a bottle of wine"
+    sales_steps:
+          - "Collect wine type"
+          - "Collect wine variety"
+          - "Collect budget/price range"
+          - "Collect tasting notes"
+          - "Collect meal/occasion"
+      

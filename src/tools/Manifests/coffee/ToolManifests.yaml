@@ -1,0 +1,71 @@
+- agent_name: "CoffeeRecommendation"
+  tools:
+    - name: "recommend_coffee"
+      tool_id: ""
+      version: "1.0"
+      description: |
+        - Your task is to recommend a coffee product after collecting and confirming each entity from the user. Follow these guidelines strictly:
+        - 1. Invoke this tool only after all necessary entities are collected and confirmed from the user.
+        - 2. Use the collected entities to query the vector database and fetch relevant coffee recommendations.
+        - 3. Store all collected attributes in lower case.
+        - 4. Always recommend coffee products based solely on the fetched output from the vector database query.
+      capabilities:
+      input_requirements:
+      output_details:
+      response_time: "1-2 seconds"
+    - name: "confirm_coffee_information"
+      tool_id: ""
+      version: "1.0"
+      description: "Call to confirm human information and return compiled data to user. Store information in lower case always."
+      input_requirements:
+      output_details:
+      response_time: "1-2 seconds"
+    - name: "ask_entities"
+      tool_id: ""
+      version: "1.0"
+      description: "Use generated entity prompt from generate_active_agents_prompt()"
+      input_requirements:
+      output_details:
+      response_time: "1-2 seconds"
+
+- agent_name: "CoffeeInventory"
+  tools:
+    - name: "sql_tool"
+      tool_id: ""
+      version: "1.0"
+      description: "This tool is used to generate a valid SQL query from user input and then execute the query on SQL database. This tool requires plain text input."
+      input_requirements:
+                - None
+      response_format: "text"
+      output_details:
+      response_time: "1-2 seconds"
+
+- agent_name: "KnowledgeBase"
+  tools:
+    - name: "knowledge_base_search"
+      tool_id: ""
+      version: "1.0"
+      description: "Searches a knowledge base for relevant articles and information about coffee pairings, characteristics of coffee, tasting notes of coffees, and other related topics like famous coffees. 
+                  Strictly invokes this tool for any query requiring LLM knowledge about coffee. 
+                  Use this tool instead of LLM when the user wants to know about coffee knowledge, coffee-related information.
+                  Never return URL in responses."
+      samples:
+        sample1: |
+          - User: "Can you find information on the best coffees for summer?"
+          - You:  "Cold brew, iced coffee, and light roast coffees are popular choices for summer."
+
+        sample2: |
+          - User: "Can you tell me about famous coffees from Ethiopia?"
+          - You: "Our knowledge base suggests that some of the most famous Ethiopian coffees include Yirgacheffe, Sidamo, and Harrar."
+
+        sample3: |
+          - User: "I want to know about the best-reviewed coffees."
+          - You: "Based on our knowledge base, some of the best-reviewed coffees are Blue Mountain Coffee from Jamaica, Kopi Luwak from Indonesia, and Hawaiian Kona Coffee."
+        
+        sample4: |
+          - User: "What are the tasting notes of Ethiopian Yirgacheffe coffee?"
+          - You: "Ethiopian Yirgacheffe coffee typically has tasting notes of floral, citrus, and fruity flavors, with a bright acidity and a smooth, clean finish."
+          
+      required_parameters:
+        - query
+      response_format: "text"
